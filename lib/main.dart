@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:muras_kitepkanasy/my_home_page.dart';
+import 'package:muras_kitepkanasy/pages/book_list_page.dart';
+import 'package:muras_kitepkanasy/pages/my_home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      //home: const MyHomePage(),
+      home: BookListPage(),
     );
   }
 }
