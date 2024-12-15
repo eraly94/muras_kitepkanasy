@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 import 'package:muras_kitepkanasy/pages/rented_book_page.dart';
 
-class BookListPage extends StatelessWidget {
+class BookListPage extends StatefulWidget {
+  @override
+  State<BookListPage> createState() => _BookListPageState();
+}
+
+class _BookListPageState extends State<BookListPage> {
   final List<Book> books = [
     Book(
         title: 'Гарри Поттер',
@@ -41,13 +46,14 @@ class BookListPage extends StatelessWidget {
         image: 'assets/images/bogatiypapa.jpg'),
     Book(
         title: 'Сынган кылыч',
-        author: 'Касым Тыныстанов',
+        author: 'Төлөгөн Касымбеков',
         genre: 'Тарыхий',
         copiesAvailable: 50,
         totalCopies: 50,
         image: 'assets/images/sk.jpg'),
   ];
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +77,11 @@ class BookListPage extends StatelessWidget {
         itemCount: books.length,
         itemBuilder: (context, index) {
           final book = books[index];
+          final returnCount = book.copiesAvailable + book.totalCopies;
+          // setState(() {
+          //   final returnCount;
+          // });
+
           return Column(
             children: [
               Padding(
@@ -107,10 +118,11 @@ class BookListPage extends StatelessWidget {
                       // Информация о книге
                       Expanded(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Китеп: Аккемер',
+                              book.title,
                               style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
@@ -120,7 +132,7 @@ class BookListPage extends StatelessWidget {
                                 height:
                                     8.0), // Отступ между названием и автором
                             Text(
-                              'Автору: ${book.author}\nЖеткиликтүү: ${book.copiesAvailable}',
+                              'Автору: ${book.author}\nЖеткиликтүү: $returnCount',
                               style: TextStyle(
                                 fontSize: 14.0,
                                 color: Colors.grey[700],
@@ -128,20 +140,32 @@ class BookListPage extends StatelessWidget {
                             ),
 
                             SizedBox(height: 16.0),
-                            InkWell(
-                              onTap: book.isAvailable()
-                                  ? () {
-                                      // Обработчик аренды книги
-                                      book.updateCopies(-1);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                            content: Text(
-                                                'Сиз ижарага алдыңыз"${book.title}"')),
-                                      );
-                                    }
-                                  : null,
-                              child: Text('Ижарага алуу'),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: ElevatedButton(
+                                onPressed: book.isAvailable()
+                                    ? () {
+                                        setState(() {
+                                          book.updateCopies(-1);
+                                        });
+                                        // Обработчик аренды книги
+
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content: Text(
+                                                  'Сиз "${book.title}" китебин ижарага алдыңыз')),
+                                        );
+                                      }
+                                    : null,
+                                child: Text(
+                                  'Ижарага алуу',
+                                  style: TextStyle(
+                                    fontSize: 13.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),

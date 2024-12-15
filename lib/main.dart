@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/pages/book_list_page.dart';
-import 'package:muras_kitepkanasy/pages/my_home_page.dart';
 
 void main() {
   runApp(const MyApp());

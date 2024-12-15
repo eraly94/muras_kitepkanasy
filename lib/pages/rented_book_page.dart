@@ -1,29 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 
-import 'package:flutter/material.dart';
-import 'package:muras_kitepkanasy/models/book.dart';
-
-class RentedBookPage extends StatelessWidget {
+class RentedBookPage extends StatefulWidget {
   final List<Book> rentedBooks;
 
   const RentedBookPage({Key? key, required this.rentedBooks}) : super(key: key);
 
   @override
+  State<RentedBookPage> createState() => _RentedBookPageState();
+}
+
+class _RentedBookPageState extends State<RentedBookPage> {
+  @override
   Widget build(BuildContext context) {
     // Фильтруем список для отображения только арендованных книг
-    final rentedBooksList = rentedBooks
+    final rentedBooksList = widget.rentedBooks
         .where((book) => book.copiesAvailable < book.totalCopies)
         .toList();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Арендованные книги'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            setState(() {
+              Navigator.pop(context);
+            });
+          },
+        ),
+        title: const Text(
+          'Ижарага алынган китептердин тизмеси',
+          style: TextStyle(
+            fontSize: 17.0,
+          ),
+        ),
       ),
       body: rentedBooksList.isEmpty
-          ? Center(
+          ? const Center(
               child: Text(
-                'Пока вы не арендовали книги.',
+                'Ижарага алынган китеп жок.',
                 style: TextStyle(fontSize: 16.0, color: Colors.grey),
               ),
             )
@@ -44,7 +59,7 @@ class RentedBookPage extends StatelessWidget {
                         BoxShadow(
                           color: Colors.grey.withOpacity(0.3),
                           blurRadius: 5,
-                          offset: Offset(0, 3), // Смещение тени
+                          offset: const Offset(0, 3), // Смещение тени
                         ),
                       ],
                     ),
@@ -61,7 +76,7 @@ class RentedBookPage extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        SizedBox(width: 16.0),
+                        const SizedBox(width: 16.0),
                         // Информация о книге
                         Expanded(
                           child: Column(
@@ -69,42 +84,43 @@ class RentedBookPage extends StatelessWidget {
                             children: [
                               Text(
                                 book.title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 8.0),
+                              const SizedBox(height: 8.0),
                               Text(
-                                'Автор: ${book.author}',
+                                'Автору: ${book.author}',
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   color: Colors.grey[700],
                                 ),
                               ),
-                              SizedBox(height: 8.0),
+                              const SizedBox(height: 8.0),
                               Text(
-                                'Арендовано копий: $rentedCount',
+                                'Ижарага алынган копиясы: $rentedCount',
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   color: Colors.grey[700],
                                 ),
                               ),
-                              SizedBox(height: 16.0),
+                              const SizedBox(height: 16.0),
                               // Кнопка возврата книги
                               ElevatedButton(
                                 onPressed: () {
-                                  book.updateCopies(1); // Вернуть книгу
+                                  setState(() {
+                                    book.updateCopies(1);
+                                    // Вернуть книгу
+                                  });
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                          'Вы вернули книгу "${book.title}"'),
+                                          'Сиз "${book.title}" китебин кайтардыңыз'),
                                     ),
                                   );
-                                  // Перестроить экран
-                                  (context as Element).reassemble();
                                 },
-                                child: Text('Вернуть книгу'),
+                                child: const Text('Китепти кайтаруу'),
                               ),
                             ],
                           ),
