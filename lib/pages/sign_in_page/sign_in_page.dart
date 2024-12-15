@@ -108,9 +108,9 @@ class _SignInPageState extends State<SignInPage> {
                         'Зарегистрироваться',
                         style: TextStyle(color: Colors.redAccent, fontSize: 18),
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
