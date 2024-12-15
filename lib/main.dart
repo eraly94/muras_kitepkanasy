@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/pages/book_list_page.dart';
+import 'package:muras_kitepkanasy/pages/sign_in_page/sign_in_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const MyHomePage(),
-      home: BookListPage(),
+      home: SignInPage(),
     );
   }
 }
