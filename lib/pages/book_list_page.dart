@@ -64,7 +64,7 @@ class _BookListPageState extends State<BookListPage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const UserPage(),
+                builder: (context) => UserPage(rentedBooksUser:books),
               ),
             );
           },
