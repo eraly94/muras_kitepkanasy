@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
-import 'package:muras_kitepkanasy/pages/book_list_page.dart';
+import 'package:muras_kitepkanasy/pages/sign_in_page.dart';
+import 'package:muras_kitepkanasy/widgets/text_from_field.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
@@ -20,61 +21,60 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Register',
-          style: AppTextStyles.f28w700.copyWith(color: Colors.white),
-        ),
-        backgroundColor: Colors.blueAccent,
-        centerTitle: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 100),
               Text(
-                'Register',
-                style: AppTextStyles.f16w700.copyWith(color: Colors.grey),
+                'Катталуу',
+                style: AppTextStyles.f18w700,
               ),
-              _TextField(
+              MyTextField(
                   controller: _nameController,
-                  text: 'Full name',
+                  labelText: 'Толук аты жөнүңөр',
                   icon: const Icon(Icons.person)),
-              _TextField(
+              MyTextField(
                 controller: _emailController,
-                text: 'Email',
+                labelText: 'Email почтаңыз',
                 icon: const Icon(Icons.email),
               ),
-              _TextField(
+              MyTextField(
                   controller: _phoneController,
-                  text: 'Phone number',
+                  labelText: 'Телефон номерииз',
                   icon: const Icon(Icons.phone)),
-              _TextField(
+              MyTextField(
                   controller: _passwordController,
-                  text: 'Password',
+                  labelText: 'Сыр сөзүңүз',
                   icon: const Icon(Icons.lock)),
-              _TextField(
+              MyTextField(
                   controller: _confirmPasswordController,
-                  text: 'Confirm password',
+                  labelText: 'Сыр сөз тастыктоо',
                   icon: const Icon(Icons.lock)),
               const SizedBox(height: 70),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    //  Navigator.push(context, MaterialPageRoute(builder: (context)=> SignInPage(),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInPage(),
+                        ));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
                     foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: const Text(
-                    'Sign Up',
+                    'Катталуу',
                     style: TextStyle(fontSize: 18),
                   ),
                 ),
@@ -84,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'Already have an account?',
+                    'Аккаунтыңыз барбы?',
                     style: AppTextStyles.f16,
                   ),
                   const SizedBox(
@@ -92,11 +92,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> BookListPage(),));
-
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignInPage(),
+                          ));
                     },
-                    child:  Text(
-                      ' Sign In',
+                    child: Text(
+                      'Кирүү',
                       style: AppTextStyles.f16.copyWith(color: Colors.blue),
                     ),
                   )
@@ -106,37 +109,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _TextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String text;
-  final Widget icon;
-
-  const _TextField(
-      {required this.controller, required this.text, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 20,
-        ),
-        TextField(
-          controller: controller,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            labelText: text,
-            prefixIcon: icon,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
