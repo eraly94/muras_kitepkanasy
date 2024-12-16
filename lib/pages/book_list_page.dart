@@ -58,10 +58,10 @@ class _BookListPageState extends State<BookListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Мурас китепканасы'),
+        title: const Text('Мурас китепканасы'),
         actions: [
           IconButton(
-            icon: Icon(Icons.list),
+            icon: const Icon(Icons.list),
             onPressed: () {
               Navigator.push(
                 context,
@@ -95,7 +95,7 @@ class _BookListPageState extends State<BookListPage> {
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.3),
                         blurRadius: 5,
-                        offset: Offset(0, 3), // Смещение тени
+                        offset: const Offset(0, 3), // Смещение тени
                       ),
                     ],
                   ),
@@ -113,7 +113,7 @@ class _BookListPageState extends State<BookListPage> {
                               .cover, // Растягивает изображение, сохраняя пропорции
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                           width: 16.0), // Отступ между изображением и текстом
                       // Информация о книге
                       Expanded(
@@ -123,12 +123,12 @@ class _BookListPageState extends State<BookListPage> {
                           children: [
                             Text(
                               book.title,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                                 height:
                                     8.0), // Отступ между названием и автором
                             Text(
@@ -139,7 +139,7 @@ class _BookListPageState extends State<BookListPage> {
                               ),
                             ),
 
-                            SizedBox(height: 16.0),
+                            const SizedBox(height: 16.0),
                             Padding(
                               padding: const EdgeInsets.only(right: 15.0),
                               child: ElevatedButton(
@@ -158,7 +158,7 @@ class _BookListPageState extends State<BookListPage> {
                                         );
                                       }
                                     : null,
-                                child: Text(
+                                child: const Text(
                                   'Ижарага алуу',
                                   style: TextStyle(
                                     fontSize: 13.0,

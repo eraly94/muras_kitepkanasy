@@ -27,7 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.3),
                     blurRadius: 5,
-                    offset: Offset(0, 3), // Смещение тени
+                    offset: const Offset(0, 3), // Смещение тени
                   ),
                 ],
               ),
@@ -45,20 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           .cover, // Растягивает изображение, сохраняя пропорции
                     ),
                   ),
-                  SizedBox(width: 16.0), // Отступ между изображением и текстом
+                  const SizedBox(
+                      width: 16.0), // Отступ между изображением и текстом
                   // Информация о книге
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Китеп: Аккемер',
                           style: TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                             height: 8.0), // Отступ между названием и автором
                         Text(
                           'Автор',
@@ -67,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.grey[700],
                           ),
                         ),
-                        SizedBox(height: 8.0),
+                        const SizedBox(height: 8.0),
                         Text(
                           'Доступно: ',
                           style: TextStyle(
@@ -75,10 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             color: Colors.grey[700],
                           ),
                         ),
-                        SizedBox(height: 16.0),
+                        const SizedBox(height: 16.0),
                         InkWell(
                           onTap: () {},
-                          child: Text('Ижарага алуу'),
+                          child: const Text('Ижарага алуу'),
                         ),
                       ],
                     ),
