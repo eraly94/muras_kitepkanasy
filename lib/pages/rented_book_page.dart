@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 
 class RentedBookPage extends StatefulWidget {
@@ -30,18 +31,15 @@ class _RentedBookPageState extends State<RentedBookPage> {
         ),
         title: const Text(
           'Ижарага алынган китептердин тизмеси',
-          style: TextStyle(
-            fontSize: 17.0,
-          ),
+          style: AppTextStyles.f17
         ),
       ),
       body: rentedBooksList.isEmpty
-          ? const Center(
+          ?  Center(
               child: Text(
                 'Ижарага алынган китеп жок.',
-                style: TextStyle(fontSize: 16.0, color: Colors.grey),
-              ),
-            )
+                style: AppTextStyles.f16.copyWith(color: Colors.grey)
+            ),)
           : ListView.builder(
               itemCount: rentedBooksList.length,
               itemBuilder: (context, index) {
@@ -92,18 +90,14 @@ class _RentedBookPageState extends State<RentedBookPage> {
                               const SizedBox(height: 8.0),
                               Text(
                                 'Автору: ${book.author}',
-                                style: TextStyle(
-                                  fontSize: 14.0,
+                                style: AppTextStyles.f14.copyWith(
                                   color: Colors.grey[700],
                                 ),
                               ),
                               const SizedBox(height: 8.0),
                               Text(
                                 'Ижарага алынган копиясы: $rentedCount',
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: Colors.grey[700],
-                                ),
+                                style: AppTextStyles.f14.copyWith(color: Colors.grey[700])
                               ),
                               const SizedBox(height: 16.0),
                               // Кнопка возврата книги
