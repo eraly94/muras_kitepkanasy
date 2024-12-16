@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/pages/book_list_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -16,6 +17,59 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  Future<void> _userRegister() async{
+    final String name= _nameController.text;
+    final String email = _emailController.text;
+    final String phone = _phoneController.text;
+    final String password = _passwordController.text;
+    final String confirmPassword  =_confirmPasswordController.text;
+
+
+    if (name.isEmpty || email.isEmpty || phone.isEmpty|| password.isEmpty|| confirmPassword.isEmpty) {
+      _showSnackBar('Please fill in all fields');
+      return;}
+
+
+     if (password!=confirmPassword) {
+       _showSnackBar('Password dont match');
+       return;
+     } 
+
+     try { SharedPreferences prefs = await SharedPreferences.getInstance();
+     await prefs.setString('name', name);
+     await prefs.setString('email', email);
+     await prefs.setString('phone', phone);
+     await prefs.setString('password', password);
+
+      _showSnackBar('Registration is successful!!!');
+
+       Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => BookListPage()));
+       
+     } catch (e) {
+       _showSnackBar('Error saving data $e');
+     }
+    
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
+
+   @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +117,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    //  Navigator.push(context, MaterialPageRoute(builder: (context)=> SignInPage(),));
+                   _userRegister();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
@@ -93,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   TextButton(
                     onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> BookListPage(),));
-
+                                                          // SignInPage();
                     },
                     child:  Text(
                       ' Sign In',
