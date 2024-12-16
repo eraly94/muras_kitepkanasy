@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 import 'package:muras_kitepkanasy/pages/rented_book_page.dart';
 
@@ -8,7 +9,7 @@ class BookListPage extends StatefulWidget {
 }
 
 class _BookListPageState extends State<BookListPage> {
-  final List<Book> books = [
+  List<Book> books = [
     Book(
         title: 'Гарри Поттер',
         author: 'Дж. К. Роулинг',
@@ -58,17 +59,22 @@ class _BookListPageState extends State<BookListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Мурас китепканасы'),
+        leading: Icon(Icons.person),
+        title: const Text('Мурас китепканасы'),
         actions: [
           IconButton(
-            icon: Icon(Icons.list),
-            onPressed: () {
-              Navigator.push(
+            icon: const Icon(Icons.list),
+            onPressed: () async {
+              final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => RentedBookPage(rentedBooks: books),
                 ),
               );
+              if (result != null) {
+                setState(() {});
+              }
+              ;
             },
           ),
         ],
@@ -78,9 +84,6 @@ class _BookListPageState extends State<BookListPage> {
         itemBuilder: (context, index) {
           final book = books[index];
           final returnCount = book.copiesAvailable + book.totalCopies;
-          // setState(() {
-          //   final returnCount;
-          // });
 
           return Column(
             children: [
@@ -95,7 +98,7 @@ class _BookListPageState extends State<BookListPage> {
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.3),
                         blurRadius: 5,
-                        offset: Offset(0, 3), // Смещение тени
+                        offset: const Offset(0, 3), // Смещение тени
                       ),
                     ],
                   ),
@@ -113,7 +116,7 @@ class _BookListPageState extends State<BookListPage> {
                               .cover, // Растягивает изображение, сохраняя пропорции
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                           width: 16.0), // Отступ между изображением и текстом
                       // Информация о книге
                       Expanded(
@@ -121,25 +124,17 @@ class _BookListPageState extends State<BookListPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              book.title,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
+                            Text(book.title, style: AppTextStyles.f18wb),
+
+                            const SizedBox(
                                 height:
                                     8.0), // Отступ между названием и автором
                             Text(
-                              'Автору: ${book.author}\nЖеткиликтүү: $returnCount',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.grey[700],
-                              ),
-                            ),
+                                'Автору: ${book.author}\nЖеткиликтүү: $returnCount',
+                                style: AppTextStyles.f14
+                                    .copyWith(color: Colors.grey[700])),
 
-                            SizedBox(height: 16.0),
+                            const SizedBox(height: 16.0),
                             Padding(
                               padding: const EdgeInsets.only(right: 15.0),
                               child: ElevatedButton(
@@ -158,13 +153,8 @@ class _BookListPageState extends State<BookListPage> {
                                         );
                                       }
                                     : null,
-                                child: Text(
-                                  'Ижарага алуу',
-                                  style: TextStyle(
-                                    fontSize: 13.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                child: const Text('Ижарага алуу',
+                                    style: AppTextStyles.f13wb),
                               ),
                             ),
                           ],
