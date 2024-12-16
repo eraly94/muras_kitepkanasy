@@ -24,22 +24,17 @@ class _RentedBookPageState extends State<RentedBookPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            setState(() {
-              Navigator.pop(context);
-            });
+            Navigator.pop(context, true);
           },
         ),
-        title: const Text(
-          'Ижарага алынган китептердин тизмеси',
-          style: AppTextStyles.f17
-        ),
+        title: const Text('Ижарага алынган китептердин тизмеси',
+            style: AppTextStyles.f17),
       ),
       body: rentedBooksList.isEmpty
-          ?  Center(
-              child: Text(
-                'Ижарага алынган китеп жок.',
-                style: AppTextStyles.f16.copyWith(color: Colors.grey)
-            ),)
+          ? Center(
+              child: Text('Ижарага алынган китеп жок.',
+                  style: AppTextStyles.f16.copyWith(color: Colors.grey)),
+            )
           : ListView.builder(
               itemCount: rentedBooksList.length,
               itemBuilder: (context, index) {
@@ -95,10 +90,9 @@ class _RentedBookPageState extends State<RentedBookPage> {
                                 ),
                               ),
                               const SizedBox(height: 8.0),
-                              Text(
-                                'Ижарага алынган копиясы: $rentedCount',
-                                style: AppTextStyles.f14.copyWith(color: Colors.grey[700])
-                              ),
+                              Text('Ижарага алынган копиясы: $rentedCount',
+                                  style: AppTextStyles.f14
+                                      .copyWith(color: Colors.grey[700])),
                               const SizedBox(height: 16.0),
                               // Кнопка возврата книги
                               ElevatedButton(

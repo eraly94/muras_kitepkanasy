@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:muras_kitepkanasy/pages/sign_up_page.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -21,9 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       //home: const MyHomePage(),
 
-
-      home: const SignUpScreen(),
-
+      home: const SignUpPage(),
     );
   }
 }
