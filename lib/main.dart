@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/pages/book_list_page.dart';
+import 'package:muras_kitepkanasy/pages/sign_up_page.dart';
 import 'package:muras_kitepkanasy/pages/user.dart';
 
 void main() {
@@ -18,9 +19,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      //home: const MyHomePage(),
-     // home: BookListPage(),
-     home:UserPage()
+      // home: BookListPage(),
+      home: SignUpPage(),
+      // home:UserPage(),
     );
   }
 }
