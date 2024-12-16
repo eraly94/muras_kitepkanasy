@@ -9,7 +9,7 @@ class BookListPage extends StatefulWidget {
 }
 
 class _BookListPageState extends State<BookListPage> {
-  final List<Book> books = [
+  List<Book> books = [
     Book(
         title: 'Гарри Поттер',
         author: 'Дж. К. Роулинг',
@@ -53,23 +53,26 @@ class _BookListPageState extends State<BookListPage> {
         totalCopies: 50,
         image: 'assets/images/sk.jpg'),
   ];
-
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.person),
         title: const Text('Мурас китепканасы'),
         actions: [
           IconButton(
             icon: const Icon(Icons.list),
-            onPressed: () {
-              Navigator.push(
+            onPressed: () async {
+              final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => RentedBookPage(rentedBooks: books),
                 ),
               );
+              if (result != null) {
+                setState(() {});
+              }
+              ;
             },
           ),
         ],
@@ -79,9 +82,6 @@ class _BookListPageState extends State<BookListPage> {
         itemBuilder: (context, index) {
           final book = books[index];
           final returnCount = book.copiesAvailable + book.totalCopies;
-          // setState(() {
-          //   final returnCount;
-          // });
 
           return Column(
             children: [
@@ -123,6 +123,7 @@ class _BookListPageState extends State<BookListPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(book.title, style: AppTextStyles.f18wb),
+
                             const SizedBox(
                                 height:
                                     8.0), // Отступ между названием и автором
@@ -150,10 +151,8 @@ class _BookListPageState extends State<BookListPage> {
                                         );
                                       }
                                     : null,
-                                child: const Text(
-                                  'Ижарага алуу',
-                                  style: AppTextStyles.f13wb
-                                ),
+                                child: const Text('Ижарага алуу',
+                                    style: AppTextStyles.f13wb),
                               ),
                             ),
                           ],
