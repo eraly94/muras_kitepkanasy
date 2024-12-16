@@ -121,8 +121,9 @@ class _BookListPageState extends State<BookListPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: 
                             Text(book.title, style: AppTextStyles.f18wb),
+
                             const SizedBox(
                                 height:
                                     8.0), // Отступ между названием и автором

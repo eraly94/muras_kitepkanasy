@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
                         const Text('Китеп: Аккемер',
                             style: AppTextStyles.f18wb),
                         const SizedBox(
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text('Доступно: ',
                             style: AppTextStyles.f14
                                 .copyWith(color: Colors.grey[700])),
+
                         const SizedBox(height: 16.0),
                         InkWell(
                           onTap: () {},
