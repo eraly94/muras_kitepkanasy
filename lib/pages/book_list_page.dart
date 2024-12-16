@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 import 'package:muras_kitepkanasy/pages/rented_book_page.dart';
 
@@ -120,24 +121,16 @@ class _BookListPageState extends State<BookListPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              book.title,
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                          children: 
+                            Text(book.title, style: AppTextStyles.f18wb),
+
                             const SizedBox(
                                 height:
                                     8.0), // Отступ между названием и автором
                             Text(
-                              'Автору: ${book.author}\nЖеткиликтүү: $returnCount',
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.grey[700],
-                              ),
-                            ),
+                                'Автору: ${book.author}\nЖеткиликтүү: $returnCount',
+                                style: AppTextStyles.f14
+                                    .copyWith(color: Colors.grey[700])),
 
                             const SizedBox(height: 16.0),
                             Padding(
@@ -160,10 +153,7 @@ class _BookListPageState extends State<BookListPage> {
                                     : null,
                                 child: const Text(
                                   'Ижарага алуу',
-                                  style: TextStyle(
-                                    fontSize: 13.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: AppTextStyles.f13wb
                                 ),
                               ),
                             ),

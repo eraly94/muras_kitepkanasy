@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -52,30 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Китеп: Аккемер',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+
+                        const Text('Китеп: Аккемер',
+                            style: AppTextStyles.f18wb),
                         const SizedBox(
                             height: 8.0), // Отступ между названием и автором
-                        Text(
-                          'Автор',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.grey[700],
-                          ),
-                        ),
+                        Text('Автор',
+                            style: AppTextStyles.f14
+                                .copyWith(color: Colors.grey[700])),
                         const SizedBox(height: 8.0),
-                        Text(
-                          'Доступно: ',
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.grey[700],
-                          ),
-                        ),
+                        Text('Доступно: ',
+                            style: AppTextStyles.f14
+                                .copyWith(color: Colors.grey[700])),
+
                         const SizedBox(height: 16.0),
                         InkWell(
                           onTap: () {},
