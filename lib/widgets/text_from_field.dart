@@ -6,12 +6,14 @@ class MyTextField extends StatelessWidget {
   final String? hintText;
   final Widget icon;
 
+
   const MyTextField(
       {super.key,
       required this.controller,
       required this.icon,
       required this.labelText,
-      this.hintText});
+      this.hintText,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,10 @@ class MyTextField extends StatelessWidget {
         ),
         TextFormField(
           controller: controller,
-          validator: (value) {},
+          
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
+            
             hintText: hintText,
             labelText: labelText,
             prefixIcon: icon,

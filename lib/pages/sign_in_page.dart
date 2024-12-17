@@ -3,6 +3,7 @@ import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/pages/book_list_page.dart';
 import 'package:muras_kitepkanasy/pages/sign_up_page.dart';
 import 'package:muras_kitepkanasy/widgets/text_from_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/elevated_button.dart';
 
@@ -16,6 +17,48 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: AppTextStyles.f18w700.copyWith(color: Colors.redAccent),
+        ),
+        backgroundColor: Colors.grey,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+    );
+  }
+ void _signIn() async {
+  String email = _emailController.text;
+  String password = _passwordController.text;
+
+  // Retrieve registered credentials from SharedPreferences
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? registeredEmail = prefs.getString('registeredEmail');
+  String? registeredPassword = prefs.getString('registeredPassword');
+
+  if (email.isEmpty || password.isEmpty) {
+    _showSnackBar('Please fill in all fields');
+  } else if (registeredEmail == null || registeredPassword == null) {
+    _showSnackBar('No registered account found. Please sign up first.');
+  } else if (email != registeredEmail) {
+    _showSnackBar('Email does not match our records');
+  } else if (password != registeredPassword) {
+    _showSnackBar('Incorrect password');
+  } else {
+    // Successful sign-in logic
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => BookListPage()),
+    );
+  }
+}
+
+ 
   // final _formKey = GlobalKey<FormState>();
 
   void _goToHomePage() {
@@ -60,16 +103,6 @@ class _SignInPageState extends State<SignInPage> {
                     controller: _emailController,
                     labelText: 'Email почтаңыз',
                     icon: const Icon(Icons.email),
-
-                    // validator: (value) {
-                    //   if (value == null || value.isEmpty) {
-                    //     return 'Почта не может быть пустой';
-                    //   } else if (value != _emailController) {
-                    //     return 'Неправильная почта';
-                    //   }
-                    //   return null;
-                    // },
-                    //obscureText: false,
                     hintText: '',
                   ),
                   const SizedBox(
@@ -79,22 +112,13 @@ class _SignInPageState extends State<SignInPage> {
                     controller: _passwordController,
                     labelText: 'Сыр сөзүңүз',
                     icon: const Icon(Icons.lock),
-                    //   validator: (value) {
-                    //     if (value == null || value.isEmpty) {
-                    //       return 'Пароль не может быть пустой';
-                    //     } else if (value != _emailController) {
-                    //       return 'Неправильный пароль';
-                    //     }
-                    //     return null;
-                    //   },
-                    //   obscureText: false,
-                    //   hintText: 'Введите пароль',
+                    hintText: 'Введите пароль',
                   ),
                   const SizedBox(
                     height: 70,
                   ),
                   ElevatedButtonWidget(
-                    onPressed: _goToHomePage,
+                    onPressed: _signIn,
                     text: 'Кирүү',
                   ),
                   const SizedBox(
