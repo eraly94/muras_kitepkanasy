@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
-import 'package:muras_kitepkanasy/pages/book_list_page.dart';
+
 
 class UserPage extends StatefulWidget {
   final List<Book> rentedBooksUser;
