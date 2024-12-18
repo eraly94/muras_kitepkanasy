@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/pages/sign_in_page.dart';
 import 'package:muras_kitepkanasy/widgets/text_from_field.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -18,6 +19,59 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  Future<void> _userRegister() async {
+    final String name = _nameController.text;
+    final String email = _emailController.text;
+    final String phone = _phoneController.text;
+    final String password = _passwordController.text;
+    final String confirmPassword = _confirmPasswordController.text;
+
+    if (name.isNotEmpty ||
+        email.isNotEmpty ||
+        phone.isNotEmpty ||
+        password.isNotEmpty ||
+        confirmPassword.isNotEmpty) {
+      
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('registeredName', name);
+      await prefs.setString('registeredEmail', email);
+      await prefs.setString('registeredPhone', phone);
+      await prefs.setString('registeredPassword', password);
+
+      _showSnackBar('Registration is successful!!!');
+
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const SignInPage()));
+    } 
+    else {
+      _showSnackBar('Please fill in all fields');
+    }
+  }
+
+  void _showSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: AppTextStyles.f18w700.copyWith(color: Colors.redAccent),
+        ),
+        backgroundColor: Colors.grey,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,41 +82,41 @@ class _SignUpPageState extends State<SignUpPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 100),
-              Text(
+              const SizedBox(height: 100),
+              const Text(
                 'Катталуу',
                 style: AppTextStyles.f18w700,
               ),
               MyTextField(
-                  controller: _nameController,
-                  labelText: 'Толук аты жөнүңөр',
-                  icon: const Icon(Icons.person)),
+                controller: _nameController,
+                labelText: 'Толук аты жөнүңөр',
+                icon: const Icon(Icons.person),
+              ),
               MyTextField(
                 controller: _emailController,
                 labelText: 'Email почтаңыз',
                 icon: const Icon(Icons.email),
               ),
               MyTextField(
-                  controller: _phoneController,
-                  labelText: 'Телефон номерииз',
-                  icon: const Icon(Icons.phone)),
+                controller: _phoneController,
+                labelText: 'Телефон номерииз',
+                icon: const Icon(Icons.phone),
+              ),
               MyTextField(
-                  controller: _passwordController,
-                  labelText: 'Сыр сөзүңүз',
-                  icon: const Icon(Icons.lock)),
+                controller: _passwordController,
+                labelText: 'Сыр сөзүңүз',
+                icon: const Icon(Icons.lock),
+              ),
               MyTextField(
-                  controller: _confirmPasswordController,
-                  labelText: 'Сыр сөз тастыктоо',
-                  icon: const Icon(Icons.lock)),
+                controller: _confirmPasswordController,
+                labelText: 'Сыр сөз тастыктоо',
+                icon: const Icon(Icons.lock),
+              ),
               const SizedBox(height: 70),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignInPage(),
-                        ));
+                    _userRegister();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
@@ -95,8 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SignInPage(),
-                          ));
+                              builder: (context) => const SignInPage()));
                     },
                     child: Text(
                       'Кирүү',
