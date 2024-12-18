@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 
-
 class UserPage extends StatefulWidget {
   final List<Book> rentedBooksUser;
   const UserPage({Key? key, required this.rentedBooksUser}) : super(key: key);
@@ -22,7 +21,7 @@ class _UserPageState extends State<UserPage> {
         appBar: AppBar(
           backgroundColor: Colors.black12,
           centerTitle: true,
-          title: Text("User Page"),
+          title: const Text("User Page"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -38,15 +37,15 @@ class _UserPageState extends State<UserPage> {
                       .cover, // Растягивает изображение, сохраняя пропорции
                 ),
               ),
-              SizedBox(height: 5),
-              Divider(
+              const SizedBox(height: 5),
+              const Divider(
                 height: 5,
                 color: Colors.grey,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Asanov Usen",
+                  const Text("Asanov Usen",
                       style: TextStyle(
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold,
@@ -58,7 +57,7 @@ class _UserPageState extends State<UserPage> {
                             fontSize: 14.0,
                             color: Colors.grey[700],
                           )),
-                      Text("+79261234567",
+                      const Text("+79261234567",
                           style: TextStyle(
                             color: Colors.blue,
                             fontSize: 18.0,
@@ -73,7 +72,7 @@ class _UserPageState extends State<UserPage> {
                             fontSize: 14.0,
                             color: Colors.grey[700],
                           )),
-                      Text(
+                      const Text(
                         "007",
                         style: TextStyle(
                           fontSize: 18.0,
@@ -91,7 +90,7 @@ class _UserPageState extends State<UserPage> {
                           )),
                       Text(
                           "${rentedBooksListUser.length}", // Количество арендованных копий
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           )),
@@ -99,7 +98,7 @@ class _UserPageState extends State<UserPage> {
                   )
                 ],
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Expanded(
                 child: MyBooks(
                   books: rentedBooksListUser,
@@ -118,6 +117,7 @@ class MyBooks extends StatelessWidget {
   });
 
   final List<Book> books;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,11 @@ class MyBooks extends StatelessWidget {
             itemCount: books.length,
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
+
               final book = books[index];
+               
+                final rentedCount = book.totalCopies -
+                    book.copiesAvailable; // Количество арендованных копий
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
@@ -143,7 +147,7 @@ class MyBooks extends StatelessWidget {
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.3),
                         blurRadius: 5,
-                        offset: Offset(0, 3), // Смещение тени
+                        offset:const  Offset(0, 3), // Смещение тени
                       ),
                     ],
                   ),
@@ -162,7 +166,7 @@ class MyBooks extends StatelessWidget {
                               .cover, // Растягивает изображение, сохраняя пропорции
                         ),
                       ),
-                      SizedBox(
+                     const SizedBox(
                           width: 16.0), // Отступ между изображением и текстом
                       // Информация о книге
                       Column(
@@ -170,16 +174,9 @@ class MyBooks extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              // Text(
-                              //   'Китеп: ',
-                              //   style: TextStyle(
-                              //     fontSize: 14.0,
-                              //     color: Colors.grey[700],
-                              //   ),
-                              // ),
                               Text(
                                 book.title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -187,11 +184,11 @@ class MyBooks extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 8.0),
+                          const SizedBox(height: 8.0),
                           Row(
                             children: [
                               Text(
-                                'Автор:',
+                                'Автор: ',
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   color: Colors.grey[700],
@@ -199,13 +196,32 @@ class MyBooks extends StatelessWidget {
                               ),
                               Text(
                                 book.author,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
                           ),
+                           Row(
+                            children: [
+                              Text(
+                                'Ижарага алынган копиясы: ',
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.grey[700],
+                                ),
+                              ),
+                              Text(
+                                 '$rentedCount',
+                                style: const TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                          
                         ],
                       ),
                     ],
