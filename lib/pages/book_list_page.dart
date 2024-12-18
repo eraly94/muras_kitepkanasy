@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 import 'package:muras_kitepkanasy/pages/rented_book_page.dart';
-import 'package:muras_kitepkanasy/pages/user.dart';
+import 'package:muras_kitepkanasy/pages/user_page.dart';
 
 class BookListPage extends StatefulWidget {
   @override
@@ -62,13 +62,26 @@ class _BookListPageState extends State<BookListPage> {
 
 
         leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => UserPage(rentedBooksUser:books),
-              ),
-            );
+          onPressed: ()async  {
+
+            {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserPage(rentedBooksUser:books),
+                ),
+              );
+              if (result != null) {
+                setState(() {});
+              };
+              
+            };
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => UserPage(rentedBooksUser:books),
+            //   ),
+            // );
           },
           icon: const Icon(Icons.person_2),
         ),
@@ -86,8 +99,8 @@ class _BookListPageState extends State<BookListPage> {
               );
               if (result != null) {
                 setState(() {});
-              }
-              ;
+              };
+              
             },
           ),
         ],
