@@ -58,10 +58,10 @@ class _BookListPageState extends State<BookListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[400],
       appBar: AppBar(
-
-
         leading: IconButton(
+
           onPressed: ()async  {
 
             {
@@ -82,10 +82,10 @@ class _BookListPageState extends State<BookListPage> {
             //     builder: (context) => UserPage(rentedBooksUser:books),
             //   ),
             // );
+
           },
           icon: const Icon(Icons.person_2),
         ),
-
         title: const Text('Мурас китепканасы'),
         actions: [
           IconButton(
@@ -114,8 +114,8 @@ class _BookListPageState extends State<BookListPage> {
           return Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,

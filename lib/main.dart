@@ -24,13 +24,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      
       home: const SignUpPage(),
 
       // home: BookListPage(),
-     // home: SignUpPage(),
+      // home: SignUpPage(),
       // home:UserPage(),
-
     );
   }
 }
