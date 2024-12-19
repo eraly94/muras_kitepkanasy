@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
-  static const f28w700 = TextStyle(
+  static const titleTextf28w700 = TextStyle(
     fontSize: 28,
     fontWeight: FontWeight.w700,
+    color: Colors.white,
   );
   static const f16w700 = TextStyle(
     fontSize: 18,
