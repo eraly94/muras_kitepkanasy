@@ -29,11 +29,13 @@ class _SignUpPageState extends State<SignUpPage> {
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
 
+
     if (name.isNotEmpty ||
         email.isNotEmpty ||
         phone.isNotEmpty ||
         password.isNotEmpty ||
         confirmPassword.isNotEmpty) {
+
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('registeredName', name);
       await prefs.setString('registeredEmail', email);
@@ -45,6 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
       );
 
       Navigator.pushReplacement(
+
           // ignore: use_build_context_synchronously
           context,
           MaterialPageRoute(builder: (context) => const SignInPage()));
@@ -52,6 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
       _showSnackBar('Баардык талаа толтурулушу зарыл!');
     }
   }
+
 
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
