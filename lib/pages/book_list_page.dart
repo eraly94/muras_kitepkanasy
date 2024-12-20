@@ -1,3 +1,5 @@
+// ignore_for_file: empty_statements
+
 import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
@@ -5,6 +7,8 @@ import 'package:muras_kitepkanasy/pages/rented_book_page.dart';
 import 'package:muras_kitepkanasy/pages/user_page.dart';
 
 class BookListPage extends StatefulWidget {
+  const BookListPage({super.key});
+
   @override
   State<BookListPage> createState() => _BookListPageState();
 }
@@ -15,30 +19,30 @@ class _BookListPageState extends State<BookListPage> {
         title: 'Гарри Поттер',
         author: 'Дж. К. Роулинг',
         genre: 'Фэнтези',
-        copiesAvailable: 9,
+        copiesAvailable: 5,
         image: 'assets/images/harrypotter.jpg',
-        totalCopies: 9),
+        totalCopies: 5),
     Book(
         title: 'Ак кеме',
         author: 'Ч. Т. Айтматов',
         genre: 'Тарыхий',
-        copiesAvailable: 19,
-        totalCopies: 19,
+        copiesAvailable: 4,
+        totalCopies: 4,
         image: 'assets/images/akkeme.jpg'),
+    Book(
+        title: 'Сынган кылыч',
+        author: 'Төлөгөн Касымбеков',
+        genre: 'Тарыхий',
+        copiesAvailable: 5,
+        totalCopies: 5,
+        image: 'assets/images/sk.jpg'),
     Book(
         title: 'Саманчынын жолу',
         author: 'Ч. Т. Айтматов',
         genre: 'Уламыш',
-        copiesAvailable: 15,
-        totalCopies: 15,
+        copiesAvailable: 3,
+        totalCopies: 3,
         image: 'assets/images/samanchynynjolu.jpg'),
-    Book(
-        title: 'Эрте келген турналар',
-        author: 'Ч. Т. Айтматов',
-        genre: 'Аңгеме',
-        copiesAvailable: 23,
-        totalCopies: 23,
-        image: 'assets/images/ertekelgent.jpg'),
     Book(
         title: 'Богатый папа и бедный папа',
         author: 'Роберт Кийосаки',
@@ -47,49 +51,49 @@ class _BookListPageState extends State<BookListPage> {
         totalCopies: 7,
         image: 'assets/images/bogatiypapa.jpg'),
     Book(
-        title: 'Сынган кылыч',
-        author: 'Төлөгөн Касымбеков',
-        genre: 'Тарыхий',
-        copiesAvailable: 50,
-        totalCopies: 50,
-        image: 'assets/images/sk.jpg'),
+        title: 'Эрте келген турналар',
+        author: 'Ч. Т. Айтматов',
+        genre: 'Аңгеме',
+        copiesAvailable: 2,
+        totalCopies: 2,
+        image: 'assets/images/ertekelgent.jpg'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[400],
+      backgroundColor: Colors.grey[700],
       appBar: AppBar(
         leading: IconButton(
-
-          onPressed: ()async  {
-
+          onPressed: () async {
             {
               final result = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => UserPage(rentedBooksUser:books),
+                  builder: (context) => UserPage(rentedBooksUser: books),
                 ),
               );
               if (result != null) {
                 setState(() {});
-              };
-              
-            };
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => UserPage(rentedBooksUser:books),
-            //   ),
-            // );
-
+              }
+            }
+            ;
           },
-          icon: const Icon(Icons.person_2),
+          icon: Icon(
+            Icons.person_2,
+            color: Color.fromARGB(255, 23, 16, 220).withOpacity(0.5),
+            size: 30,
+          ),
         ),
-        title: const Text('Мурас китепканасы'),
+        title:
+            Text('Мурас китепканасы', style: AppTextStyles.titleLargef28w700),
         actions: [
           IconButton(
-            icon: const Icon(Icons.list),
+            icon: Icon(
+              Icons.list_rounded,
+              color: Color.fromARGB(255, 23, 16, 220).withOpacity(0.5),
+              size: 30,
+            ),
             onPressed: () async {
               final result = await Navigator.push(
                 context,
@@ -99,8 +103,8 @@ class _BookListPageState extends State<BookListPage> {
               );
               if (result != null) {
                 setState(() {});
-              };
-              
+              }
+              ;
             },
           ),
         ],
@@ -109,7 +113,7 @@ class _BookListPageState extends State<BookListPage> {
         itemCount: books.length,
         itemBuilder: (context, index) {
           final book = books[index];
-          final returnCount = book.copiesAvailable + book.totalCopies;
+          // final returnCount = book.copiesAvailable + book.totalCopies;
 
           return Column(
             children: [
@@ -118,13 +122,14 @@ class _BookListPageState extends State<BookListPage> {
                     vertical: 10.0, horizontal: 20.0),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.blue[100],
+                    borderRadius: BorderRadius.circular(15.0),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
+                        color:
+                            Color.fromARGB(255, 23, 16, 220).withOpacity(0.5),
                         blurRadius: 5,
-                        offset: const Offset(0, 3), // Смещение тени
+                        offset: const Offset(5, 5), // Смещение тени
                       ),
                     ],
                   ),
@@ -133,13 +138,13 @@ class _BookListPageState extends State<BookListPage> {
                       // Изображение книги
                       ClipRRect(
                         borderRadius: BorderRadius.circular(
-                            8.0), // Скругленные углы изображения
+                            15.0), // Скругленные углы изображения
                         child: Image.asset(
                           book.image,
                           width: 200, // Ширина изображения
                           height: 250, // Высота изображения
                           fit: BoxFit
-                              .cover, // Растягивает изображение, сохраняя пропорции
+                              .contain, // Растягивает изображение, сохраняя пропорции
                         ),
                       ),
                       const SizedBox(
@@ -156,7 +161,7 @@ class _BookListPageState extends State<BookListPage> {
                                 height:
                                     8.0), // Отступ между названием и автором
                             Text(
-                                'Автору: ${book.author}\nЖеткиликтүү: $returnCount',
+                                'Автору: ${book.author}\nЖеткиликтүү: ${book.copiesAvailable}\nЖанры: ${book.genre}',
                                 style: AppTextStyles.f14
                                     .copyWith(color: Colors.grey[700])),
 
@@ -179,8 +184,10 @@ class _BookListPageState extends State<BookListPage> {
                                         );
                                       }
                                     : null,
-                                child: const Text('Ижарага алуу',
-                                    style: AppTextStyles.f13wb),
+                                child: Text('Ижарага алуу',
+                                    style: AppTextStyles.f13wb.copyWith(
+                                      color: Color.fromARGB(255, 139, 54, 147),
+                                    )),
                               ),
                             ),
                           ],

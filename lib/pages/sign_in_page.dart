@@ -25,50 +25,42 @@ class _SignInPageState extends State<SignInPage> {
           message,
           style: AppTextStyles.f18w700.copyWith(color: Colors.redAccent),
         ),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
       ),
     );
   }
- void _signIn() async {
-  String email = _emailController.text;
-  String password = _passwordController.text;
 
-  // Retrieve registered credentials from SharedPreferences
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? registeredEmail = prefs.getString('registeredEmail');
-  String? registeredPassword = prefs.getString('registeredPassword');
+  void _signIn() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
 
-  if (email.isEmpty || password.isEmpty) {
-    _showSnackBar('Please fill in all fields');
-  } else if (registeredEmail == null || registeredPassword == null) {
-    _showSnackBar('No registered account found. Please sign up first.');
-  } else if (email != registeredEmail) {
-    _showSnackBar('Email does not match our records');
-  } else if (password != registeredPassword) {
-    _showSnackBar('Incorrect password');
-  } else {
-    // Successful sign-in logic
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => BookListPage()),
-    );
+    // Retrieve registered credentials from SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? registeredEmail = prefs.getString('registeredEmail');
+    String? registeredPassword = prefs.getString('registeredPassword');
+
+    if (email.isEmpty || password.isEmpty) {
+      _showSnackBar('Баардык талаа толтурулушу зарыл!');
+    } else if (registeredEmail == null || registeredPassword == null) {
+      _showSnackBar('Катталган аккаунт табылган жок. Алгач катталыңыз.');
+    } else if (email != registeredEmail) {
+      _showSnackBar('Email почтаңыз туура келбей жатат.');
+    } else if (password != registeredPassword) {
+      _showSnackBar('Сыр сөзүңүз туура келбей жатат.');
+    } else {
+      // Successful sign-in logic
+      Navigator.push(
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(builder: (_) => const BookListPage()),
+      );
+    }
   }
-}
 
- 
   // final _formKey = GlobalKey<FormState>();
-
-  void _goToHomePage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BookListPage(),
-      ),
-    );
-  }
 
   void _goToSignUp() {
     Navigator.push(
@@ -94,7 +86,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   const Text(
                     'Кирүү',
-                    style: AppTextStyles.f16w700,
+                    style: AppTextStyles.f18w700,
                   ),
                   const SizedBox(
                     height: 70,
