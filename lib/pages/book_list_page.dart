@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 import 'package:muras_kitepkanasy/pages/rented_book_page.dart';
+import 'package:muras_kitepkanasy/pages/user.dart';
 
 class BookListPage extends StatefulWidget {
   @override
@@ -53,11 +54,25 @@ class _BookListPageState extends State<BookListPage> {
         totalCopies: 50,
         image: 'assets/images/sk.jpg'),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.person),
+
+
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const UserPage(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.person_2),
+        ),
+
         title: const Text('Мурас китепканасы'),
         actions: [
           IconButton(
