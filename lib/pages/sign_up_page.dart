@@ -26,12 +26,17 @@ class _SignUpPageState extends State<SignUpPage> {
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
 
-    if (name.isNotEmpty ||
-        email.isNotEmpty ||
-        phone.isNotEmpty ||
-        password.isNotEmpty ||
-        confirmPassword.isNotEmpty) {
-      
+    if (name.isEmpty ||
+        email.isEmpty ||
+        phone.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
+           _showSnackBar('Please fill in all fields!');
+           return;}
+       if (password != confirmPassword) {
+    _showSnackBar('Passwords do not match');
+    return;
+  }
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('registeredName', name);
       await prefs.setString('registeredEmail', email);
@@ -43,10 +48,8 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const SignInPage()));
     } 
-    else {
-      _showSnackBar('Please fill in all fields');
-    }
-  }
+   
+  
 
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
