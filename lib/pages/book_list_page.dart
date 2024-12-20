@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/models/book.dart';
 import 'package:muras_kitepkanasy/pages/rented_book_page.dart';
-import 'package:muras_kitepkanasy/pages/user.dart';
+import 'package:muras_kitepkanasy/pages/user_page.dart';
 
 class BookListPage extends StatefulWidget {
   @override
@@ -58,21 +58,34 @@ class _BookListPageState extends State<BookListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[400],
       appBar: AppBar(
-
-
         leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const UserPage(),
-              ),
-            );
+
+          onPressed: ()async  {
+
+            {
+              final result = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserPage(rentedBooksUser:books),
+                ),
+              );
+              if (result != null) {
+                setState(() {});
+              };
+              
+            };
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => UserPage(rentedBooksUser:books),
+            //   ),
+            // );
+
           },
           icon: const Icon(Icons.person_2),
         ),
-
         title: const Text('Мурас китепканасы'),
         actions: [
           IconButton(
@@ -86,8 +99,8 @@ class _BookListPageState extends State<BookListPage> {
               );
               if (result != null) {
                 setState(() {});
-              }
-              ;
+              };
+              
             },
           ),
         ],
@@ -101,8 +114,8 @@ class _BookListPageState extends State<BookListPage> {
           return Column(
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 20.0),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
