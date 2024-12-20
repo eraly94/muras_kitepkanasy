@@ -1,4 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:muras_kitepkanasy/constants/app_text_styles.dart';
 import 'package:muras_kitepkanasy/pages/sign_in_page.dart';
 import 'package:muras_kitepkanasy/widgets/text_from_field.dart';
@@ -31,20 +34,22 @@ class _SignUpPageState extends State<SignUpPage> {
         phone.isNotEmpty ||
         password.isNotEmpty ||
         confirmPassword.isNotEmpty) {
-      
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('registeredName', name);
       await prefs.setString('registeredEmail', email);
       await prefs.setString('registeredPhone', phone);
       await prefs.setString('registeredPassword', password);
 
-      _showSnackBar('Registration is successful!!!');
+      _showSnackBar(
+        'Катто  ийгиликтүү!!!',
+      );
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const SignInPage()));
-    } 
-    else {
-      _showSnackBar('Please fill in all fields');
+          // ignore: use_build_context_synchronously
+          context,
+          MaterialPageRoute(builder: (context) => const SignInPage()));
+    } else {
+      _showSnackBar('Баардык талаа толтурулушу зарыл!');
     }
   }
 
@@ -55,8 +60,9 @@ class _SignUpPageState extends State<SignUpPage> {
           message,
           style: AppTextStyles.f18w700.copyWith(color: Colors.redAccent),
         ),
-        backgroundColor: Colors.grey,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16),
+        backgroundColor: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
         ),
       ),
     );

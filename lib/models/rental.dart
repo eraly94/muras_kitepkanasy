@@ -2,9 +2,9 @@ import 'package:muras_kitepkanasy/models/book.dart';
 import 'package:muras_kitepkanasy/models/user.dart';
 
 class Rental {
-  Book _book;
-  User _user;
-  DateTime _rentalDate;
+  final Book _book;
+  final User _user;
+  final DateTime _rentalDate;
   DateTime? _returnDate;
 
   // Конструктор
@@ -23,6 +23,7 @@ class Rental {
   void returnRental() {
     _returnDate = DateTime.now();
     _user.returnBook(_book);
+    // ignore: avoid_print
     print(
         'Книга "${_book.title}" была возвращена пользователем ${_user.name}.');
   }

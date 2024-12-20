@@ -5,7 +5,7 @@ import 'package:muras_kitepkanasy/models/book.dart';
 class RentedBookPage extends StatefulWidget {
   final List<Book> rentedBooks;
 
-  const RentedBookPage({Key? key, required this.rentedBooks}) : super(key: key);
+  const RentedBookPage({super.key, required this.rentedBooks});
 
   @override
   State<RentedBookPage> createState() => _RentedBookPageState();
@@ -20,6 +20,7 @@ class _RentedBookPageState extends State<RentedBookPage> {
         .toList();
 
     return Scaffold(
+      backgroundColor: Colors.grey[700],
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -27,8 +28,9 @@ class _RentedBookPageState extends State<RentedBookPage> {
             Navigator.pop(context, true);
           },
         ),
-        title: const Text('Ижарага алынган китептердин тизмеси',
-            style: AppTextStyles.f17),
+        title: const Text('Ижарага алынган китептердин\n тизмеси',
+            style: AppTextStyles.titleLittlef20w700,
+            textAlign: TextAlign.center),
       ),
       body: rentedBooksList.isEmpty
           ? Center(
@@ -46,13 +48,14 @@ class _RentedBookPageState extends State<RentedBookPage> {
                       vertical: 8.0, horizontal: 16.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.blue[100],
+                      borderRadius: BorderRadius.circular(15.0),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.3),
+                          color:
+                              Color.fromARGB(255, 23, 16, 220).withOpacity(0.5),
                           blurRadius: 5,
-                          offset: const Offset(0, 3), // Смещение тени
+                          offset: const Offset(5, 5), // Смещение тени
                         ),
                       ],
                     ),
@@ -108,7 +111,11 @@ class _RentedBookPageState extends State<RentedBookPage> {
                                     ),
                                   );
                                 },
-                                child: const Text('Китепти кайтаруу'),
+                                child: Text(
+                                  'Китепти кайтаруу',
+                                  style: AppTextStyles.f13wb.copyWith(
+                                      color: Color.fromARGB(255, 139, 54, 147)),
+                                ),
                               ),
                             ],
                           ),

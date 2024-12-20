@@ -4,7 +4,7 @@ import 'package:muras_kitepkanasy/models/book.dart';
 
 class UserPage extends StatefulWidget {
   final List<Book> rentedBooksUser;
-  const UserPage({Key? key, required this.rentedBooksUser}) : super(key: key);
+  const UserPage({super.key, required this.rentedBooksUser});
 
   @override
   State<UserPage> createState() => _UserPageState();
@@ -18,23 +18,24 @@ class _UserPageState extends State<UserPage> {
         .where((book) => book.copiesAvailable < book.totalCopies)
         .toList();
     return Scaffold(
+        backgroundColor: Colors.grey[500],
         appBar: AppBar(
-          backgroundColor: Colors.black12,
           centerTitle: true,
-          title: const Text("User Page"),
+          title: const Text(
+            "Колонуучунун бети",
+            style: AppTextStyles.titleLittlef20w700,
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              SizedBox(
-                height: 200,
-                width: 150,
-                child: Image.asset(
-                  'assets/images/avatar.jpeg',
-                  // Высота изображения
-                  fit: BoxFit
-                      .cover, // Растягивает изображение, сохраняя пропорции
+              CircleAvatar(
+                backgroundColor: Colors.blue[100],
+                radius: 100,
+                child: Icon(
+                  Icons.person,
+                  size: 100,
                 ),
               ),
               const SizedBox(height: 5),
@@ -42,63 +43,81 @@ class _UserPageState extends State<UserPage> {
                 height: 5,
                 color: Colors.grey,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("Asanov Usen",
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Row(
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text("phone number: ",
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.grey[700],
-                          )),
-                      const Text("+79261234567",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text("id: ",
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.grey[700],
-                          )),
-                      const Text(
-                        "007",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
+                      RichText(
+                        text: TextSpan(
+                          text: "Аты-жөнү: ",
+                          style: AppTextStyles.f13wb
+                              .copyWith(color: Colors.grey[700]),
+                          children: [
+                            TextSpan(
+                              text: "Асанов Үсөн",
+                              style: AppTextStyles.f18wb.copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "Телефон номуру:",
+                          style: AppTextStyles.f13wb
+                              .copyWith(color: Colors.grey[700]),
+                          children: [
+                            TextSpan(
+                              text: "+79261234567",
+                              style: AppTextStyles.f18wb.copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "id:",
+                          style: AppTextStyles.f13wb
+                              .copyWith(color: Colors.grey[700]),
+                          children: [
+                            TextSpan(
+                              text: "007",
+                              style: AppTextStyles.f18wb.copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "мендеги китептердин саны:",
+                          style: AppTextStyles.f13wb
+                              .copyWith(color: Colors.grey[700]),
+                          children: [
+                            TextSpan(
+                              text: "${rentedBooksListUser.length}",
+                              style: AppTextStyles.f18wb.copyWith(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text("мендеги китептердин саны: ",
-                          style: TextStyle(
-                            fontSize: 14.0,
-                            color: Colors.grey[700],
-                          )),
-                      Text(
-                          "${rentedBooksListUser.length}", // Количество арендованных копий
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ],
-                  )
-                ],
+                ),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 10),
               Expanded(
                 child: MyBooks(
                   books: rentedBooksListUser,
@@ -117,7 +136,6 @@ class MyBooks extends StatelessWidget {
   });
 
   final List<Book> books;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -130,24 +148,24 @@ class MyBooks extends StatelessWidget {
             itemCount: books.length,
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
-
               final book = books[index];
-               
-                final rentedCount = book.totalCopies -
-                    book.copiesAvailable; // Количество арендованных копий
+
+              final rentedCount = book.totalCopies -
+                  book.copiesAvailable; // Количество арендованных копий
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                 child: Container(
                   padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
+                    color: Colors.blue[100],
+                    borderRadius: BorderRadius.circular(15.0),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
+                        color:
+                            Color.fromARGB(255, 23, 16, 220).withOpacity(0.5),
                         blurRadius: 5,
-                        offset:const  Offset(0, 3), // Смещение тени
+                        offset: const Offset(5, 5), // Смещение тени
                       ),
                     ],
                   ),
@@ -166,7 +184,7 @@ class MyBooks extends StatelessWidget {
                               .cover, // Растягивает изображение, сохраняя пропорции
                         ),
                       ),
-                     const SizedBox(
+                      const SizedBox(
                           width: 16.0), // Отступ между изображением и текстом
                       // Информация о книге
                       Column(
@@ -203,7 +221,7 @@ class MyBooks extends StatelessWidget {
                               ),
                             ],
                           ),
-                           Row(
+                          Row(
                             children: [
                               Text(
                                 'Ижарага алынган копиясы: ',
@@ -213,7 +231,7 @@ class MyBooks extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                 '$rentedCount',
+                                '$rentedCount',
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
@@ -221,7 +239,6 @@ class MyBooks extends StatelessWidget {
                               ),
                             ],
                           ),
-                          
                         ],
                       ),
                     ],

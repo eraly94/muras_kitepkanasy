@@ -1,9 +1,11 @@
+// ignore_for_file: unnecessary_getters_setters, avoid_print
+
 import 'package:muras_kitepkanasy/models/book.dart';
 
 class User {
   String _name;
   String _id;
-  List<Book> _rentedBooks = [];
+  final List<Book> _rentedBooks = [];
 
   // Конструктор
   User({required String name, required String id})

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_getters_setters
+
 class Book {
   String _title;
   String _author;
@@ -39,7 +41,7 @@ class Book {
 
   int get copiesAvailable => _copiesAvailable;
   set copiesAvailable(int value) {
-    if (value >= 0) _copiesAvailable = value;
+    if (value >= totalCopies) _copiesAvailable = value;
   }
 
   // Метод для проверки доступности
