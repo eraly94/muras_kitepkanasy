@@ -33,99 +33,97 @@ class _UserPageState extends State<UserPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                CircleAvatar(
-                backgroundColor: Colors.blue[100],
-                radius: 60,
-                child: const Icon(
-                  Icons.person,
-                  size: 60,
-                ),
-              ),
-             
-              
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[100],
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                          text: "Аты-жөнү:   ",
-                          style: AppTextStyles.f13wb
-                              .copyWith(color: Colors.grey[700]),
-                          children: [
-                            TextSpan(
-                              text: "Асанов Үсөн",
-                              style: AppTextStyles.f18wb.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                     
-                      RichText(
-                        text: TextSpan(
-                          text: "Телефон номуру:  ",
-                          style: AppTextStyles.f13wb
-                              .copyWith(color: Colors.grey[700]),
-                          children: [
-                            TextSpan(
-                              text: "+79261234567",
-                              style: AppTextStyles.f18wb.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      RichText(
-                        text: TextSpan(
-                          text: "id:   ",
-                          style: AppTextStyles.f13wb
-                              .copyWith(color: Colors.grey[700]),
-                          children: [
-                            TextSpan(
-                              text: "007",
-                              style: AppTextStyles.f18wb.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const Divider(height: 5,
-                        color: Colors.grey,
-                        indent: 20,
-                        endIndent: 20,
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: "мендеги китептердин саны:   ",
-                          style: AppTextStyles.f13wb
-                              .copyWith(color: Colors.grey[700]),
-                          children: [
-                            TextSpan(
-                              text: "${rentedBooksListUser.length}",
-                              style: AppTextStyles.f18wb.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  CircleAvatar(
+                    backgroundColor: Colors.blue[100],
+                    radius: 40,
+                    child: const Icon(
+                      Icons.person,
+                      size: 60,
+                    ),
                   ),
-                ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue[100],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: "Аты-жөнү:",
+                              style: AppTextStyles.f13wb
+                                  .copyWith(color: Colors.grey[700]),
+                              children: [
+                                TextSpan(
+                                  text: "Асанов Үсөн",
+                                  style: AppTextStyles.f18wb.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: "Телефон номуру:",
+                              style: AppTextStyles.f13wb
+                                  .copyWith(color: Colors.grey[700]),
+                              children: [
+                                TextSpan(
+                                  text: "+79261234567",
+                                  style: AppTextStyles.f18wb.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          RichText(
+                            text: TextSpan(
+                              text: "id:",
+                              style: AppTextStyles.f13wb
+                                  .copyWith(color: Colors.grey[700]),
+                              children: [
+                                TextSpan(
+                                  text: "007",
+                                  style: AppTextStyles.f18wb.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Divider(
+                            height: 5,
+                            color: Colors.grey,
+                            indent: 20,
+                            endIndent: 20,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: "мендеги китептердин саны:",
+                              style: AppTextStyles.f13wb
+                                  .copyWith(color: Colors.grey[700]),
+                              children: [
+                                TextSpan(
+                                  text: "${rentedBooksListUser.length}",
+                                  style: AppTextStyles.f18wb.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              ],),
-              
               const SizedBox(height: 10),
               Expanded(
                 child: rentedBooksListUser.isEmpty
