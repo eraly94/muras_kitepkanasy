@@ -45,13 +45,13 @@ class _UserPageState extends State<UserPage> {
               
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.blue[100],
+                  color: Colors.blue[200],
                   borderRadius: BorderRadius.circular(15),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       RichText(
                         text: TextSpan(
