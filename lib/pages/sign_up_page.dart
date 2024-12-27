@@ -29,33 +29,33 @@ class _SignUpPageState extends State<SignUpPage> {
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
 
-
-    if (name.isNotEmpty ||
-        email.isNotEmpty ||
-        phone.isNotEmpty ||
-        password.isNotEmpty ||
-        confirmPassword.isNotEmpty) {
-
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('registeredName', name);
-      await prefs.setString('registeredEmail', email);
-      await prefs.setString('registeredPhone', phone);
-      await prefs.setString('registeredPassword', password);
-
-      _showSnackBar(
-        'Катто  ийгиликтүү!!!',
-      );
-
-      Navigator.pushReplacement(
-
-          // ignore: use_build_context_synchronously
-          context,
-          MaterialPageRoute(builder: (context) => const SignInPage()));
-    } else {
+    if (name.isEmpty ||
+        email.isEmpty ||
+        phone.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty) {
       _showSnackBar('Баардык талаа толтурулушу зарыл!');
+      return;
     }
-  }
 
+    if (password != confirmPassword) {
+      _showSnackBar('Сыр сөздөр туура болушу керек!');
+      return;
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('registeredName', name);
+    await prefs.setString('registeredEmail', email);
+    await prefs.setString('registeredPhone', phone);
+    await prefs.setString('registeredPassword', password);
+
+    _showSnackBar(
+      'Катто  ийгиликтүү!!!',
+    );
+
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const SignInPage()));
+  }
 
   void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
