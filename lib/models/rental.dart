@@ -19,6 +19,10 @@ class Rental {
   DateTime get rentalDate => _rentalDate;
   DateTime? get returnDate => _returnDate;
 
+
+    // Жеке метод: Китептин жеткиликтүүлүгүн текшерүү
+  bool _isBookAvailable( Book book) => book.isAvailable();
+
   // Метод для завершения аренды (возврат книги)
   void returnRental() {
     _returnDate = DateTime.now();

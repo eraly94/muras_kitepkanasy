@@ -33,6 +33,7 @@ class _UserPageState extends State<UserPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+
                 CircleAvatar(
                 backgroundColor: Colors.blue[100],
                 radius: 60,
@@ -64,68 +65,67 @@ class _UserPageState extends State<UserPage> {
                               style: AppTextStyles.f18wb.copyWith(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold),
+
                             ),
-                          ],
-                        ),
-                      ),
-                     
-                      RichText(
-                        text: TextSpan(
-                          text: "Телефон номуру:  ",
-                          style: AppTextStyles.f13wb
-                              .copyWith(color: Colors.grey[700]),
-                          children: [
-                            TextSpan(
-                              text: "+79261234567",
-                              style: AppTextStyles.f18wb.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: "Телефон номуру:",
+                              style: AppTextStyles.f13wb
+                                  .copyWith(color: Colors.grey[700]),
+                              children: [
+                                TextSpan(
+                                  text: "+79261234567",
+                                  style: AppTextStyles.f18wb.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      RichText(
-                        text: TextSpan(
-                          text: "id:   ",
-                          style: AppTextStyles.f13wb
-                              .copyWith(color: Colors.grey[700]),
-                          children: [
-                            TextSpan(
-                              text: "007",
-                              style: AppTextStyles.f18wb.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 5),
+                          RichText(
+                            text: TextSpan(
+                              text: "id:",
+                              style: AppTextStyles.f13wb
+                                  .copyWith(color: Colors.grey[700]),
+                              children: [
+                                TextSpan(
+                                  text: "007",
+                                  style: AppTextStyles.f18wb.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      const Divider(height: 5,
-                        color: Colors.grey,
-                        indent: 20,
-                        endIndent: 20,
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: "мендеги китептердин саны:   ",
-                          style: AppTextStyles.f13wb
-                              .copyWith(color: Colors.grey[700]),
-                          children: [
-                            TextSpan(
-                              text: "${rentedBooksListUser.length}",
-                              style: AppTextStyles.f18wb.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
+                          ),
+                          const Divider(
+                            height: 5,
+                            color: Colors.grey,
+                            indent: 20,
+                            endIndent: 20,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              text: "мендеги китептердин саны:",
+                              style: AppTextStyles.f13wb
+                                  .copyWith(color: Colors.grey[700]),
+                              children: [
+                                TextSpan(
+                                  text: "${rentedBooksListUser.length}",
+                                  style: AppTextStyles.f18wb.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-              ],),
-              
               const SizedBox(height: 10),
               Expanded(
                 child: rentedBooksListUser.isEmpty
